@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Law Ledger — CA Foundation Business Laws</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#17233A;
+  --parchment:#F4EFE3;
+  --paper:#FBF8F1;
+  --brass:#A9793B;
+  --brass-dark:#7E5A26;
+  --line:#DCD2BA;
+  --good-bg:#E3F0E5;
+  --good-text:#2F5D42;
+  --avg-bg:#F7E1DA;
+  --avg-text:#8A3B2E;
+  --danger-bg:#1C1A18;
+  --danger-text:#F2ECDD;
+  --shadow:0 2px 0 rgba(23,35,58,0.08);
+}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--parchment);color:var(--ink);font-family:'IBM Plex Sans',sans-serif;}
+h1,h2,h3,.display{font-family:'Fraunces',serif;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+.app{display:block;min-height:100vh;}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--ink);color:var(--parchment);padding:9px 18px;box-shadow:0 1px 0 rgba(0,0,0,0.15);}
+.topbar .brand{display:flex;align-items:center;gap:9px;padding-right:13px;border-right:1px solid rgba(244,239,227,0.18);flex:none;}
+.topbar .brand .stamp-mark{width:24px;height:24px;border:2px solid var(--brass);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:700;font-size:11px;color:var(--brass);flex:none;}
+.topbar .brand h1{font-size:13.5px;margin:0;line-height:1.1;white-space:nowrap;font-weight:600;}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1;}
+.tab{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:20px;font-size:12px;opacity:0.78;text-align:left;background:rgba(244,239,227,0.05);color:inherit;border:1px solid transparent;white-space:nowrap;}
+.tab .num{font-family:'IBM Plex Mono',monospace;font-size:9.5px;opacity:0.55;}
+.tab:hover{opacity:1;background:rgba(244,239,227,0.13);}
+.tab.active{opacity:1;background:var(--brass);border-color:var(--brass);color:var(--ink);font-weight:600;}
+
+main{padding:22px 32px 80px 32px;max-width:1180px;margin:0 auto;}
+@media (max-width:600px){main{padding:16px 16px 70px 16px;} .topbar{padding:8px 12px;}}
+.section-head{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;}
+.section-head .idx{font-family:'IBM Plex Mono',monospace;color:var(--brass-dark);font-size:14px;}
+.section-head h2{margin:0;font-size:26px;}
+.subhead{color:#5c5342;font-size:14px;margin:0 0 24px 0;max-width:640px;}
+hr.rule{border:none;border-top:1px solid var(--line);margin:18px 0;}
+
+.card{background:var(--paper);border:1px solid var(--line);border-radius:2px;box-shadow:var(--shadow);padding:20px;margin-bottom:16px;}
+.card h3{margin:0 0 4px 0;font-size:17px;}
+.grid{display:grid;gap:14px;}
+.grid.cols-2{grid-template-columns:repeat(2,1fr);}
+.grid.cols-3{grid-template-columns:repeat(3,1fr);}
+@media (max-width:700px){.grid.cols-2,.grid.cols-3{grid-template-columns:1fr;}}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:2px;border:1px solid var(--ink);background:var(--ink);color:var(--parchment);font-size:13px;font-weight:600;letter-spacing:0.02em;}
+.btn:hover{background:#233250;}
+.btn.secondary{background:transparent;color:var(--ink);}
+.btn.secondary:hover{background:rgba(23,35,58,0.06);}
+.btn.brass{background:var(--brass);border-color:var(--brass);}
+.btn.brass:hover{background:var(--brass-dark);}
+.btn:disabled{opacity:0.45;cursor:not-allowed;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+select,input[type=text],input[type=number],textarea{font-family:inherit;border:1px solid var(--line);background:var(--paper);padding:9px 11px;border-radius:2px;font-size:13.5px;color:var(--ink);width:100%;}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--brass);outline-offset:1px;}
+label{font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:#6b6250;display:block;margin-bottom:5px;}
+
+.stamp{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:9px;letter-spacing:0.03em;transform:rotate(-6deg);border:2px double currentColor;flex:none;}
+.stamp.good{background:var(--good-bg);color:var(--good-text);}
+.stamp.avg{background:var(--avg-bg);color:var(--avg-text);}
+.stamp.danger{background:var(--danger-bg);color:var(--danger-text);border-color:#3a352f;}
+.stamp b{font-size:13px;}
+
+.chapter-row{display:flex;align-items:center;gap:16px;}
+.chapter-row .meta{flex:1;}
+.chapter-row .meta .act{font-size:12px;color:#6b6250;margin-top:2px;}
+
+.tag{display:inline-block;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:2px 8px;border-radius:10px;margin-bottom:8px;}
+.tag.definition{background:#DDE7F5;color:#2A4A7A;}
+.tag.keypoint{background:var(--good-bg);color:var(--good-text);}
+.tag.exception{background:#F3E6CC;color:var(--brass-dark);}
+.tag.case{background:var(--avg-bg);color:var(--avg-text);}
+.tag.mnemonic{background:#EAE3F2;color:#5B3A82;}
+.note-block{border-left:3px solid var(--line);padding:4px 0 4px 14px;margin-bottom:14px;}
+.note-block h4{margin:0 0 4px 0;font-size:15px;}
+.note-block p{margin:0;font-size:14px;line-height:1.6;color:#2c3448;}
+#notes-output{max-width:760px;}
+.selector-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.selector-bar label{margin:0;white-space:nowrap;}
+.selector-bar select{width:auto;min-width:230px;}
+
+.flash-wrap{perspective:1200px;height:200px;}
+.flash{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.5s;cursor:pointer;}
+.flash.flipped{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:4px;padding:20px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:15px;line-height:1.5;border:1px solid var(--line);}
+.face.front{background:var(--paper);}
+.face.back{background:var(--ink);color:var(--parchment);transform:rotateY(180deg);}
+.flash-nav{display:flex;justify-content:space-between;align-items:center;margin-top:12px;}
+
+.q-option{display:block;width:100%;text-align:left;padding:11px 14px;border:1px solid var(--line);background:var(--paper);border-radius:2px;margin-bottom:8px;font-size:14px;}
+.q-option:hover{border-color:var(--brass);}
+.q-option.selected{border-color:var(--brass);background:#F3E6CC;}
+.q-option.correct{border-color:var(--good-text);background:var(--good-bg);}
+.q-option.incorrect{border-color:var(--avg-text);background:var(--avg-bg);}
+
+.chat-log{display:flex;flex-direction:column;gap:12px;max-height:440px;overflow-y:auto;padding-right:4px;}
+.msg{max-width:82%;padding:11px 14px;border-radius:3px;font-size:14px;line-height:1.55;}
+.msg.user{align-self:flex-end;background:var(--ink);color:var(--parchment);}
+.msg.ai{align-self:flex-start;background:var(--paper);border:1px solid var(--line);}
+.msg .verify{margin-top:6px;font-size:11px;color:var(--good-text);font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;color:#6b6250;padding:8px 10px;border-bottom:2px solid var(--ink);}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;}
+
+.ring-wrap{display:flex;align-items:center;gap:20px;}
+.ring{position:relative;width:110px;height:110px;flex:none;}
+.ring svg{transform:rotate(-90deg);}
+
+.banner{background:#F3E6CC;border:1px solid var(--brass);border-radius:2px;padding:12px 16px;font-size:13.5px;margin-bottom:18px;}
+.banner.notice{background:#EAF1EC;border-color:var(--good-text);}
+.empty{color:#6b6250;font-size:13.5px;font-style:italic;}
+.loading{display:flex;align-items:center;gap:8px;font-size:13px;color:#6b6250;}
+.spinner{width:14px;height:14px;border:2px solid var(--line);border-top-color:var(--brass);border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.modal-back{position:fixed;inset:0;background:rgba(23,35,58,0.55);display:flex;align-items:center;justify-content:center;z-index:100;padding:20px;}
+.modal{background:var(--paper);border-radius:3px;max-width:420px;width:100%;padding:24px;border:1px solid var(--line);}
+.modal h3{margin-top:0;}
+.field{margin-bottom:14px;}
+.close-x{position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;color:#6b6250;}
+
+::-webkit-scrollbar{width:8px;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px;}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="stamp-mark">§</div>
+      <h1>The Law Ledger</h1>
+    </div>
+    <nav class="tabs" id="rail"></nav>
+  </header>
+  <main id="main"></main>
+</div>
+<div id="modal-root"></div>
+
+<script>
+/* =====================================================================
+   This app runs entirely offline once loaded: no server, no API key,
+   no internet connection required. All notes, flash cards, quiz
+   questions and doubt answers are bundled in this file. Progress is
+   saved to this browser's local storage.
+   ===================================================================== */
+
+const CHAPTERS = [
+  {id:'ch1', num:'01', title:'Indian Regulatory Framework', act:'Overview of business laws & regulators'},
+  {id:'ch2', num:'02', title:'The Indian Contract Act, 1872', act:'Offer, acceptance, consideration, indemnity, guarantee, bailment, pledge, agency'},
+  {id:'ch3', num:'03', title:'The Sale of Goods Act, 1930', act:'Conditions & warranties, transfer of property, unpaid seller'},
+  {id:'ch4', num:'04', title:'The Indian Partnership Act, 1932', act:'Nature of partnership, rights & duties, dissolution'},
+  {id:'ch5', num:'05', title:'The Limited Liability Partnership Act, 2008', act:'LLP formation, partners, incorporation'},
+  {id:'ch6', num:'06', title:'The Companies Act, 2013', act:'Company formation, types, memorandum & articles'},
+  {id:'ch7', num:'07', title:'The Negotiable Instruments Act, 1881', act:'Promissory notes, bills of exchange, cheques'},
+];
+
+const TABS = [
+  {id:'dashboard', label:'Dashboard', num:'00'},
+  {id:'notes', label:'Topper Notes', num:'01'},
+  {id:'flash', label:'Flash Cards', num:'02'},
+  {id:'quiz', label:'Quiz Maker', num:'03'},
+  {id:'doubt', label:'Doubt Desk', num:'04'},
+  {id:'tracker', label:'Prep Ledger', num:'05'},
+];
+
+/* ===================== CONTENT BANKS (bundled, offline) ===================== */
+
+const NOTES_BANK = {
+  ch1: [
+    {type:'definition', heading:'What "Business Laws" covers', content:'The body of statutory rules governing commercial transactions and the conduct of business entities in India — distinct from criminal, constitutional, or family law.'},
+    {type:'keypoint', heading:'Scope of this paper', content:'The paper focuses on core private commercial law — contract, sale of goods, partnership, LLP, companies, and negotiable instruments — not on regulators like SEBI or RBI in detail.'},
+    {type:'keypoint', heading:'Sources of business law', content:'Statutes (Acts of Parliament), judicial precedent (court decisions), and mercantile custom/usage of trade all shape Indian business law.'},
+    {type:'exception', heading:'No single code', content:'Business law isn\'t one unified code — different transaction types (sale, partnership, negotiable instruments) each have their own dedicated Act.'},
+    {type:'case', heading:'Common mix-up', content:'Don\'t confuse a "law" (an Act of Parliament — primary legislation) with a "regulation" (like a SEBI circular — subordinate legislation made under delegated authority).'},
+    {type:'mnemonic', heading:'Remember the 7 chapters', content:'Framework, Contract, Sale, Partnership, LLP, Companies, Negotiable instruments — "F-C-S-P-L-C-N".'},
+    {type:'definition', heading:'Legislation', content:'Law enacted by a competent legislature — Parliament for central subjects, State legislatures for state subjects. This is the primary source of business law.'},
+    {type:'keypoint', heading:'Judicial precedent in practice', content:'Courts generally follow the doctrine of stare decisis — lower courts are bound by the reasoning (ratio decidendi) of higher courts on the same point of law.'},
+    {type:'keypoint', heading:'Hierarchy that matters for precedent', content:'Supreme Court decisions bind all courts in India; High Court decisions bind subordinate courts within that state; this hierarchy decides which precedent "wins".'},
+    {type:'exception', heading:'Not every custom counts', content:'A custom is only recognised as law if it is ancient, certain, reasonable, continuous, and not opposed to any statute or public policy — a recent or unreasonable practice doesn\'t qualify.'},
+    {type:'keypoint', heading:'Why this chapter matters for the rest', content:'Understanding "Act vs regulation vs custom vs precedent" here avoids confusion later when a question asks you to identify the source of a rule in Contract, Sale of Goods, or Companies law.'},
+  ],
+  ch2: [
+    {type:'definition', heading:'Contract — Sec 2(h)', content:'An agreement enforceable by law. Every agreement is not a contract, but every contract starts life as an agreement.'},
+    {type:'definition', heading:'Agreement — Sec 2(e)', content:'Every promise and every set of promises forming consideration for each other.'},
+    {type:'keypoint', heading:'Essentials of a valid contract', content:'Offer & acceptance, intention to create legal relations, lawful consideration, capacity, free consent, lawful object, certainty, and possibility of performance.'},
+    {type:'keypoint', heading:'Consideration', content:'Must move at the desire of the promisor; can be past, present, or future — but never illegal, immoral, or opposed to public policy.'},
+    {type:'exception', heading:'"No consideration, no contract" — exceptions', content:'A written, registered promise from natural love and affection, or a written promise to pay a time-barred debt, are both valid without fresh consideration.'},
+    {type:'case', heading:'Void vs voidable', content:'Common mistake: a void agreement was never enforceable (e.g. an agreement with a minor); a voidable contract is enforceable at the option of one party (e.g. one caused by coercion).'},
+    {type:'keypoint', heading:'Indemnity vs Guarantee', content:'Indemnity = 2 parties, compensating for a loss. Guarantee = 3 parties (creditor, principal debtor, surety), performing/discharging a third person\'s liability on default.'},
+    {type:'keypoint', heading:'Bailment vs Pledge', content:'Bailment = delivery of goods for a purpose with return/disposal as directed. Pledge = bailment of goods specifically as security for a debt — every pledge is a bailment, not every bailment is a pledge.'},
+    {type:'definition', heading:'Offer & Acceptance — Sec 2(a)-(b)', content:'An offer (proposal) is a signification of willingness to do or not do something, to obtain the other party\'s assent. Acceptance is that assent given to the offer — once accepted, the proposal becomes a promise.'},
+    {type:'keypoint', heading:'Communication & revocation of offer', content:'An offer can be revoked any time before acceptance is communicated, not after. Acceptance itself must be communicated to the offeror to complete the contract — silence is not acceptance.'},
+    {type:'keypoint', heading:'Free consent — the five flaws', content:'Consent isn\'t "free" if caused by coercion, undue influence, fraud, misrepresentation, or mistake. The first four make a contract voidable at the aggrieved party\'s option; certain mistakes can make it void instead.'},
+    {type:'keypoint', heading:'Capacity to contract — Sec 11', content:'A person must be of the age of majority, of sound mind, and not disqualified from contracting by any law they\'re subject to. Fail any one, and the agreement is void (not merely voidable) — this is why "agreement with a minor" is void, not voidable.'},
+    {type:'keypoint', heading:'Discharge of a contract', content:'A contract ends by performance, mutual agreement, impossibility of performance (frustration), lapse of the agreed time, or breach — knowing all five modes helps you eliminate wrong options fast in MCQs.'},
+    {type:'keypoint', heading:'Remedies for breach', content:'The aggrieved party may claim damages, seek specific performance, seek an injunction, or claim on a quantum meruit basis (payment for work actually done) — damages is the default remedy unless the facts call for another.'},
+    {type:'definition', heading:'Quasi-contract', content:'An obligation the law imposes on a party as if a contract existed, even without any real agreement — its purpose is to prevent one party from being unjustly enriched at another\'s expense.'},
+    {type:'exception', heading:'Wagering agreements are void', content:'Agreements by way of wager (a bet on an uncertain event) are void under Sec 30 — with narrow, specific exceptions such as certain horse-race prize contributions above a set threshold.'},
+    {type:'case', heading:'Sub-agent vs substituted agent', content:'Common mix-up: a sub-agent is appointed by the agent and works under the agent\'s control; a substituted agent is named by the agent at the principal\'s instance but is treated as the principal\'s own agent, not the original agent\'s.'},
+  ],
+  ch3: [
+    {type:'definition', heading:'Contract of sale — Sec 4', content:'The seller transfers, or agrees to transfer, property in goods to the buyer for a price.'},
+    {type:'keypoint', heading:'Condition vs Warranty', content:'Condition = essential to the main purpose; breach lets the buyer repudiate. Warranty = collateral; breach only gives a right to damages.'},
+    {type:'keypoint', heading:'Caveat emptor', content:'"Let the buyer beware" is the general rule — but it has real exceptions, e.g. sale by description, sale by sample, or fitness for a disclosed purpose.'},
+    {type:'exception', heading:'Sale by description', content:'When goods are bought by description, there\'s an implied condition the goods will correspond to that description — an exception to blind caveat emptor.'},
+    {type:'case', heading:'Sale vs agreement to sell', content:'Common mistake: in a sale, property passes immediately; in an agreement to sell, property passes later, once a condition is met or a future date arrives.'},
+    {type:'mnemonic', heading:'Unpaid seller\'s rights', content:'"L-S-R" — Lien, Stoppage in transit, Right of resale.'},
+    {type:'definition', heading:'"Goods" — the wide meaning', content:'Every kind of movable property except money and actionable claims — this includes stock, shares, growing crops, and things attached to land agreed to be severed before sale.'},
+    {type:'keypoint', heading:'When does property (ownership) actually pass?', content:'For specific/ascertained goods, property passes when the parties intend it to (often on making the contract); for unascertained goods, property only passes once goods are ascertained and unconditionally appropriated to the contract.'},
+    {type:'exception', heading:'Sale by auction', content:'Each lot in an auction is treated as a separate sale; the sale is only complete when the auctioneer announces its completion by the fall of the hammer — a bidder can retract before that moment.'},
+    {type:'keypoint', heading:'Nemo dat quod non habet', content:'"No one can give what they don\'t have" — a seller generally can\'t pass a better title than they themselves hold. Real exceptions exist though, e.g. a sale by a mercantile agent in the ordinary course of business.'},
+  ],
+  ch4: [
+    {type:'definition', heading:'Partnership — Sec 4', content:'The relation between persons who have agreed to share the profits of a business carried on by all, or any of them acting for all.'},
+    {type:'keypoint', heading:'Three essentials', content:'An agreement, sharing of profits, and mutual agency (the business is carried on by all, or any acting for all).'},
+    {type:'keypoint', heading:'Registration is optional', content:'Registering a firm isn\'t compulsory — but an unregistered firm can\'t sue a third party (or another partner) to enforce a contractual right.'},
+    {type:'exception', heading:'Profit-sharing isn\'t conclusive', content:'Sharing profits is evidence of partnership, not proof by itself — e.g. a manager paid a profit-linked salary isn\'t automatically a partner.'},
+    {type:'case', heading:'No deed needed', content:'Common mistake: assuming a written partnership deed is compulsory — an oral agreement is equally valid in law, though a deed helps avoid disputes.'},
+    {type:'mnemonic', heading:'Remember partnership as', content:'"APM" — Agreement + Profit-sharing + Mutual agency.'},
+    {type:'keypoint', heading:'Types of partners', content:'Active partner (works & shares liability), sleeping/dormant partner (invests & shares liability, doesn\'t manage), nominal partner (lends their name, no real stake), and a partner in profits only (shares profits, not losses, to third parties).'},
+    {type:'exception', heading:'A minor\'s position in a firm', content:'A minor can\'t be a full partner, but can be admitted to the benefits of an existing partnership with the other partners\' consent — sharing profits, but never personally liable for the firm\'s losses.'},
+    {type:'keypoint', heading:'Modes of dissolution', content:'A firm can dissolve by mutual agreement, compulsorily (e.g. all partners or all but one becoming insolvent), on a contingency (like the end of a fixed term), by one partner\'s notice (in a partnership at will), or by court order.'},
+    {type:'case', heading:'Partnership at will', content:'Common mix-up: not every partnership needs a fixed end date — a "partnership at will" simply continues until any partner gives notice of intention to dissolve it.'},
+  ],
+  ch5: [
+    {type:'definition', heading:'What is an LLP', content:'A body corporate with perpetual succession and a legal identity separate from its partners — blending features of a company and a partnership.'},
+    {type:'keypoint', heading:'Limited liability', content:'Unlike a traditional partnership, a partner\'s liability in an LLP is limited to their agreed contribution.'},
+    {type:'keypoint', heading:'Minimum partners', content:'At least 2 partners are needed to incorporate an LLP; there\'s no upper limit on the maximum.'},
+    {type:'exception', heading:'Liability isn\'t absolute', content:'A partner can still be personally liable for their own wrongful act or fraud, and the LLP itself can face unlimited liability in cases of fraud.'},
+    {type:'case', heading:'Not just "limited liability partnership" in name', content:'Common mistake: an LLP is a separate body corporate — not a traditional partnership with a liability clause bolted on.'},
+    {type:'mnemonic', heading:'Remember LLP as', content:'"Limited liability of a company + flexibility of a partnership."'},
+    {type:'keypoint', heading:'Incorporating an LLP', content:'Requires filing incorporation documents and a statement of compliance with the Registrar; once satisfied, the Registrar issues a Certificate of Incorporation, giving the LLP its legal existence.'},
+    {type:'keypoint', heading:'Designated partners', content:'Every LLP must have at least 2 designated partners, and at least one of them must be resident in India — they carry specific responsibility for regulatory compliance.'},
+    {type:'keypoint', heading:'What governs day-to-day rights', content:'The LLP Agreement sets out mutual rights and duties between partners; if there\'s no agreement on a point, the LLP Act\'s default provisions (in its Schedule) fill the gap.'},
+  ],
+  ch6: [
+    {type:'definition', heading:'What is a company', content:'An artificial person, created by law, with a separate legal entity, perpetual succession, and (where adopted) a common seal.'},
+    {type:'keypoint', heading:'Separate legal entity', content:'A company is legally distinct from its members — the foundation of the "corporate veil" concept.'},
+    {type:'keypoint', heading:'MoA vs AoA', content:'The Memorandum of Association defines the company\'s objects (its charter, and supreme document). The Articles of Association contain internal management rules and must not conflict with the MoA.'},
+    {type:'exception', heading:'Lifting the corporate veil', content:'Courts can disregard a company\'s separate identity in specific situations — such as fraud or improper conduct — piercing the fiction of separate personality.'},
+    {type:'case', heading:'Private vs public — not just naming', content:'Common mistake: thinking "Ltd"/"Pvt Ltd" is just a label — a private company restricts share transfer and invitations to the public; a public company doesn\'t, and the two follow different rules.'},
+    {type:'mnemonic', heading:'Company features', content:'"S-P-L-C" — Separate legal entity, Perpetual succession, Limited liability, Common seal/transferable shares.'},
+    {type:'keypoint', heading:'Main types of companies', content:'Private company (restricts share transfer & public invitations), public company (doesn\'t), One Person Company (single member), Section 8 company (not-for-profit, applies profits to its objects), and government company (majority government shareholding) — each follows its own specific rules.'},
+    {type:'keypoint', heading:'How a company is incorporated', content:'The promoters reserve a name, then file incorporation documents — including the MoA and AoA — with the Registrar of Companies, who issues a Certificate of Incorporation once satisfied.'},
+    {type:'definition', heading:'Promoter', content:'A person who takes the steps needed to bring a company into existence — conceiving the idea, arranging capital, and getting it registered. A promoter owes fiduciary duties to the company they form.'},
+    {type:'keypoint', heading:'Prospectus', content:'A document inviting the public to subscribe for a company\'s shares or debentures. It must make specified disclosures and must not contain misleading statements — investors rely on it to decide.'},
+    {type:'keypoint', heading:'Key Managerial Personnel (KMP)', content:'Typically includes the CEO/Managing Director, the Company Secretary, and the CFO — each carries distinct statutory duties and is directly accountable under the Act.'},
+  ],
+  ch7: [
+    {type:'definition', heading:'Negotiable instrument', content:'A document — like a promissory note, bill of exchange, or cheque — transferable by delivery or endorsement, giving a holder in due course good title even if an earlier holder\'s title was defective.'},
+    {type:'keypoint', heading:'A cheque, specifically', content:'A bill of exchange drawn on a specified banker, payable on demand — always with 3 parties: drawer, drawee (the bank), and payee.'},
+    {type:'keypoint', heading:'Holder in due course', content:'One who takes the instrument for consideration, in good faith, before it\'s overdue, and without notice of any defect in title.'},
+    {type:'exception', heading:'Better title than the transferor', content:'Normally a transferee can\'t get a better title than their transferor — but a holder in due course of a negotiable instrument is a key exception to that rule.'},
+    {type:'case', heading:'Holder vs holder in due course', content:'Common mistake: treating the two as identical — every holder in due course is a holder, but not every holder qualifies as a holder in due course.'},
+    {type:'mnemonic', heading:'Parties by instrument', content:'Promissory note = 2 (maker, payee). Bill of exchange = 3 (drawer, drawee, payee). Cheque = a special bill on a banker, payable on demand.'},
+    {type:'keypoint', heading:'Crossing a cheque', content:'Crossing (general or special) directs that the cheque be collected only through a bank account, rather than paid in cash over the counter — a basic safeguard against wrongful encashment.'},
+    {type:'keypoint', heading:'Endorsement', content:'Signing an instrument, usually on the back, to transfer it to someone else. Endorsement can be blank (no named endorsee), special (names the endorsee), restrictive, or conditional — each changes how the instrument can move next.'},
+    {type:'keypoint', heading:'Presentment matters', content:'An instrument generally must be presented for acceptance/payment within a reasonable time or by its due date — miss this, and certain parties (like the drawer or endorsers) may be discharged from liability.'},
+    {type:'exception', heading:'How liability is discharged', content:'Parties can be discharged from liability on an instrument by payment in due course, by cancellation, or by an unauthorised material alteration to the instrument — each cuts off further claims differently.'},
+  ],
+};
+
+const FLASH_BANK = {
+  ch1: [
+    {front:'What does "Business Laws" study?', back:'The statutory rules governing commercial transactions & business entities in India.'},
+    {front:'Name the 3 main sources of business law.', back:'Statutes, judicial precedent, and mercantile custom/usage.'},
+    {front:'How many Acts are covered in CA Foundation Business Laws?', back:'Seven — Regulatory Framework, Contract, Sale of Goods, Partnership, LLP, Companies, Negotiable Instruments.'},
+    {front:'Statute vs regulation — which is primary legislation?', back:'A statute (Act of Parliament). Regulations are subordinate/delegated legislation.'},
+    {front:'True or false: SEBI regulations are the main focus of this paper.', back:'False — the paper focuses on core commercial law Acts, not regulatory bodies.'},
+    {front:'What carries more legal force — an Act or a circular?', back:'An Act overrides a subordinate circular or regulation.'},
+    {front:'Give one example of "mercantile custom."', back:'An established trade practice recognised by courts even without being written into statute.'},
+    {front:'Why study "regulatory framework" first?', back:'It orients you to how Indian business law is structured before the substantive Acts.'},
+  ],
+  ch2: [
+    {front:'Define "contract" per Sec 2(h).', back:'An agreement enforceable by law.'},
+    {front:'Essential elements of a valid contract?', back:'Offer & acceptance, consideration, capacity, free consent, lawful object, certainty.'},
+    {front:'Void vs voidable agreement?', back:'Void = never enforceable. Voidable = enforceable at the option of one party.'},
+    {front:'Indemnity vs Guarantee — how many parties?', back:'Indemnity: 2 parties. Guarantee: 3 parties (creditor, principal debtor, surety).'},
+    {front:'Is every pledge a bailment?', back:'Yes — pledge is bailment of goods as security for a debt.'},
+    {front:'"No consideration, no contract" — one exception?', back:'A written, registered promise made out of natural love and affection.'},
+    {front:'What binds the principal in agency?', back:'Acts of the agent done within the scope of their authority.'},
+    {front:'Bailor vs bailee — who\'s who?', back:'Bailor delivers the goods; bailee receives them for a purpose.'},
+  ],
+  ch3: [
+    {front:'What does Sec 4 of the Sale of Goods Act define?', back:'A contract of sale — transfer of property in goods for a price.'},
+    {front:'Condition vs Warranty — effect of breach?', back:'Condition breach → right to repudiate. Warranty breach → right to damages only.'},
+    {front:'What does "caveat emptor" mean?', back:'Let the buyer beware — buyer must examine goods themselves.'},
+    {front:'Name one exception to caveat emptor.', back:'Sale by description — goods must correspond to that description.'},
+    {front:'Sale vs agreement to sell?', back:'Sale: property passes immediately. Agreement to sell: property passes later.'},
+    {front:'Unpaid seller\'s 3 main rights?', back:'Lien, stoppage in transit, and right of resale.'},
+    {front:'When does "sale by sample" apply?', back:'When goods are sold with reference to a sample — the bulk must match it.'},
+    {front:'Who bears risk once property passes (general rule)?', back:'The buyer, generally, unless agreed otherwise.'},
+  ],
+  ch4: [
+    {front:'Define partnership under Sec 4.', back:'Persons who agree to share profits of a business carried on by all, or any acting for all.'},
+    {front:'3 essentials of partnership?', back:'Agreement, profit-sharing, and mutual agency.'},
+    {front:'Is registering a partnership firm compulsory?', back:'No — but an unregistered firm can\'t sue third parties to enforce a contractual right.'},
+    {front:'Does sharing profits alone prove partnership?', back:'No — it\'s evidence, not conclusive proof.'},
+    {front:'Is a written deed compulsory for partnership?', back:'No — an oral agreement is equally valid.'},
+    {front:'What is "mutual agency" in partnership?', back:'Each partner is both agent and principal for the others in firm business.'},
+    {front:'Can a partnership exist for just one venture?', back:'Yes — a "particular partnership" for one adventure or undertaking.'},
+    {front:'What happens to firm property on dissolution?', back:'Applied to settle debts first, then distributed among partners per their rights.'},
+  ],
+  ch5: [
+    {front:'What is an LLP?', back:'A body corporate with perpetual succession and legal identity separate from its partners.'},
+    {front:'Minimum partners to form an LLP?', back:'Two — no maximum limit.'},
+    {front:'Liability of an LLP partner?', back:'Limited to their agreed contribution, generally.'},
+    {front:'When can an LLP partner face personal liability?', back:'For their own wrongful act, fraud, or unauthorised acts.'},
+    {front:'LLP vs traditional partnership — key difference?', back:'LLP is a separate legal entity; a traditional partnership is not.'},
+    {front:'LLP vs private company — one similarity?', back:'Both are separate legal entities with limited liability.'},
+    {front:'What document governs LLP partners\' mutual rights?', back:'The LLP Agreement.'},
+    {front:'Can an LLP be sued in its own name?', back:'Yes — as a body corporate, it can sue and be sued directly.'},
+  ],
+  ch6: [
+    {front:'What makes a company an "artificial person"?', back:'Created by law, with rights & duties, but no physical body.'},
+    {front:'Name 2 core features of a company.', back:'Separate legal entity and perpetual succession (also limited liability, common seal).'},
+    {front:'MoA vs AoA — which is supreme?', back:'MoA (Memorandum) is supreme; AoA can\'t override it.'},
+    {front:'What is "lifting the corporate veil"?', back:'Courts disregarding a company\'s separate identity, e.g. in cases of fraud.'},
+    {front:'One difference: private vs public company?', back:'Private companies restrict share transfer & invitations to the public; public companies don\'t.'},
+    {front:'What is "perpetual succession"?', back:'The company\'s existence continues regardless of changes in membership.'},
+    {front:'Who can form a One-Person Company (OPC)?', back:'A single individual, under the Companies Act 2013.'},
+    {front:'What does "limited liability" mean for a shareholder?', back:'Their loss is capped at the unpaid amount on their shares.'},
+  ],
+  ch7: [
+    {front:'Name the 3 negotiable instruments under the Act.', back:'Promissory note, bill of exchange, and cheque.'},
+    {front:'Parties in a promissory note?', back:'Two — the maker and the payee.'},
+    {front:'Parties in a bill of exchange?', back:'Three — drawer, drawee, and payee.'},
+    {front:'What is a cheque, specifically?', back:'A bill of exchange drawn on a specified banker, payable on demand.'},
+    {front:'Who is a "holder in due course"?', back:'One who takes the instrument for consideration, in good faith, before it\'s overdue, without notice of a defect.'},
+    {front:'Holder vs holder in due course?', back:'Every holder in due course is a holder, but not vice versa.'},
+    {front:'Special protection for a holder in due course?', back:'A good title even if a prior party\'s title was defective.'},
+    {front:'What can dishonour of a cheque trigger?', back:'Liability under Section 138 of the Act, in specified conditions.'},
+  ],
+};
+
+const QUIZ_BANK = {
+  ch1: [
+    {q:'Which of these is NOT one of the seven Acts studied in CA Foundation Business Laws?', options:['Indian Contract Act 1872','Sale of Goods Act 1930','Consumer Protection Act 2019','Negotiable Instruments Act 1881'], answer:2, difficulty:'easy', explanation:'The seven chapters cover Regulatory Framework, Contract, Sale of Goods, Partnership, LLP, Companies, and Negotiable Instruments.'},
+    {q:'What is the primary source of business law in India?', options:['Statutes passed by Parliament','Social media posts','Personal opinions of businessmen','Foreign case law only'], answer:0, difficulty:'easy', explanation:'Statutes (Acts) are the primary source, alongside judicial precedent and custom.'},
+    {q:'Business law mainly governs:', options:['Commercial transactions and business entities','Criminal offences only','Family relations','Constitutional matters only'], answer:0, difficulty:'easy', explanation:'It is private commercial law, not criminal, family, or constitutional law.'},
+    {q:'Which of the following is a source of Indian business law?', options:['Mercantile custom','Weather forecasts','Astrology','Personal diaries'], answer:0, difficulty:'easy', explanation:'Established, reasonable trade customs are a recognised source of law.'},
+    {q:'Regulations issued by a regulator like SEBI are an example of:', options:['Primary legislation','Delegated/subordinate legislation','Customary law','Case law'], answer:1, difficulty:'medium', explanation:'Regulators act under delegated authority granted by an Act — their rules are subordinate legislation.'},
+    {q:'Which statement best distinguishes an Act from a regulation?', options:['An Act is passed by Parliament; a regulation is subordinate legislation under delegated authority','They mean exactly the same thing','A regulation always overrides an Act','Only regulations are legally binding'], answer:0, difficulty:'medium', explanation:'An Act is primary legislation; a regulation cannot override the Act it derives authority from.'},
+    {q:'Judicial precedent as a source of law means:', options:['Decisions of courts that guide future similar cases','Only textbook opinions','Advice from senior businessmen','Rules made by trade associations only'], answer:0, difficulty:'medium', explanation:'Precedent is the doctrine of courts following earlier decisions on similar facts.'},
+    {q:'The CA Foundation Business Laws paper is best described as covering:', options:['Core private commercial law','Public international law','Criminal procedure','Environmental law'], answer:0, difficulty:'medium', explanation:'It centres on contract, sale, partnership, LLP, company, and negotiable instruments law.'},
+    {q:'If a subordinate regulation conflicts with the parent Act, which prevails?', options:['The parent Act','The regulation','Whichever was issued more recently','Neither applies'], answer:0, difficulty:'hard', explanation:'Delegated legislation cannot override the Act that empowers it.'},
+    {q:'Mercantile custom is recognised as a source of law when it is:', options:['Certain, reasonable, and long-established in trade','Invented for a single transaction','Contrary to statute','Kept secret between two traders'], answer:0, difficulty:'hard', explanation:'Courts recognise trade customs only if certain, reasonable, and well-established.'},
+    {q:'Which best explains why business law is split across several distinct Acts?', options:['Different transaction types have developed distinct rules historically','It was a clerical accident','Only company transactions need law','All business Acts were passed in the same year'], answer:0, difficulty:'hard', explanation:'Each transaction type (sale, partnership, negotiable instruments) evolved its own statute over time.'},
+    {q:'A court relying on an earlier judgment on similar facts is applying:', options:['The doctrine of judicial precedent','A statute','A regulation','A custom'], answer:0, difficulty:'hard', explanation:'This is precisely what judicial precedent means.'},
+  ],
+  ch2: [
+    {q:'A contract is:', options:['An agreement enforceable by law','Any agreement whatsoever','A written document only','A promise made in front of witnesses'], answer:0, difficulty:'easy', explanation:'Sec 2(h) defines a contract as an agreement enforceable by law.'},
+    {q:'Which is an essential element of a valid contract?', options:['Lawful consideration','A stamped paper','A witness\'s signature','Registration with the government'], answer:0, difficulty:'easy', explanation:'Lawful consideration is essential; the others are not universally required.'},
+    {q:'An agreement with a minor is:', options:['Void','Voidable','Illegal','Valid like any other'], answer:0, difficulty:'easy', explanation:'An agreement with a minor is void ab initio under Indian contract law.'},
+    {q:'In a contract of guarantee, how many parties are there?', options:['2','3','4','1'], answer:1, difficulty:'easy', explanation:'Creditor, principal debtor, and surety — three parties.'},
+    {q:'Consideration under the Contract Act can move:', options:['At the desire of the promisor','only from the promisee','Only in the past','Only in cash'], answer:0, difficulty:'medium', explanation:'Consideration must move at the desire of the promisor, from the promisee or any other person.'},
+    {q:'Which is an exception to "no consideration, no contract"?', options:['A written, registered promise from natural love and affection','Any oral promise','A promise made after a quarrel','A verbal assurance between strangers'], answer:0, difficulty:'medium', explanation:'This specific exception is recognised under Sec 25 of the Act.'},
+    {q:'Indemnity differs from guarantee mainly because:', options:['Indemnity has 2 parties while guarantee has 3','Indemnity always needs a written deed','Guarantee never involves money','Indemnity is illegal'], answer:0, difficulty:'medium', explanation:'Indemnity is a two-party compensation contract; guarantee involves a third-party surety.'},
+    {q:'Every pledge is a bailment, but every bailment is not a pledge because:', options:['Pledge specifically secures a debt with goods','Bailment always involves money','Pledge never involves delivery of goods','Bailment is only for immovable property'], answer:0, difficulty:'medium', explanation:'Pledge is a special kind of bailment, made as security for a debt.'},
+    {q:'An agent\'s act within the scope of authority binds:', options:['The principal','Only the agent personally','No one','A third party automatically as a co-principal'], answer:0, difficulty:'hard', explanation:'The principal is bound as if they had acted personally.'},
+    {q:'A contract caused by coercion is:', options:['Voidable at the option of the aggrieved party','Void from the outset always','Fully valid and binding','Illegal and criminal'], answer:0, difficulty:'hard', explanation:'Contracts induced by coercion, fraud, misrepresentation, or undue influence are voidable, not automatically void.'},
+    {q:'Which best distinguishes bailment from a simple sale of goods?', options:['In bailment, possession changes but not ownership; in sale, ownership itself transfers','Bailment always involves money','Sale never needs delivery','Bailment is only oral'], answer:0, difficulty:'hard', explanation:'Bailment is a temporary transfer of possession for a purpose, not a transfer of ownership.'},
+    {q:'A time-barred debt promised in writing to be paid is:', options:['A valid exception to the consideration rule','Automatically void','Enforceable only if witnessed by 3 people','Illegal'], answer:0, difficulty:'hard', explanation:'A written promise to pay a time-barred debt is enforceable without fresh consideration.'},
+  ],
+  ch3: [
+    {q:'A contract of sale involves:', options:['Transfer of property in goods for a price','Transfer of immovable property','A gift of goods','Loan of money'], answer:0, difficulty:'easy', explanation:'Sec 4 defines a contract of sale this way.'},
+    {q:'"Caveat emptor" means:', options:['Let the buyer beware','Let the seller beware','No refunds ever','Buyer always wins disputes'], answer:0, difficulty:'easy', explanation:'It places the responsibility of inspection on the buyer, as a general rule.'},
+    {q:'A condition, if breached, allows the buyer to:', options:['Repudiate the contract','Only claim damages','Do nothing','Force the seller to be jailed'], answer:0, difficulty:'easy', explanation:'Breach of a condition entitles the buyer to treat the contract as repudiated.'},
+    {q:'A warranty, if breached, allows the buyer to:', options:['Claim damages only','Repudiate the whole contract','Cancel any future contracts','Nothing at all'], answer:0, difficulty:'easy', explanation:'A warranty breach gives only a right to damages, not rejection.'},
+    {q:'In "sale by description," the goods must:', options:['Correspond to that description','Be exactly as expensive as described','Be inspected before sale always','Be new only'], answer:0, difficulty:'medium', explanation:'This is an implied condition under the Act.'},
+    {q:'The key difference between "sale" and "agreement to sell" is:', options:['Timing of transfer of property in goods','The price charged','The type of goods sold','Nothing — they\'re identical'], answer:0, difficulty:'medium', explanation:'In a sale, property passes immediately; in an agreement to sell, it passes later.'},
+    {q:'An unpaid seller\'s right of lien means:', options:['Retaining possession of goods until payment','Suing the buyer\'s family','Destroying the goods','Transferring goods to a third party'], answer:0, difficulty:'medium', explanation:'Lien lets the seller retain possession until the price is paid.'},
+    {q:'"Stoppage in transit" is available to an unpaid seller when:', options:['The buyer becomes insolvent while goods are in transit','The buyer pays in full','The goods have already been delivered','The seller changes their mind'], answer:0, difficulty:'medium', explanation:'This right applies specifically during transit, on the buyer\'s insolvency.'},
+    {q:'Sale by sample implies:', options:['Bulk goods must correspond to the sample shown','Only a sample needs to be delivered','No inspection is ever needed','Buyer inspects only after 1 year'], answer:0, difficulty:'hard', explanation:'The implied condition is that the bulk shall correspond to the sample in quality.'},
+    {q:'Once property in goods passes to the buyer, risk generally:', options:['Passes to the buyer too (subject to agreement)','Stays with the seller forever','Disappears entirely','Passes to a third party'], answer:0, difficulty:'hard', explanation:'Risk generally follows ownership unless the parties agree otherwise.'},
+    {q:'An implied condition as to fitness for purpose arises when:', options:['The buyer discloses the purpose and relies on the seller\'s skill/judgment','The seller never speaks to the buyer','Goods are sold strictly "as is" with no discussion','The buyer never inspects goods'], answer:0, difficulty:'hard', explanation:'This implied condition requires reliance on the seller\'s skill or judgment for a disclosed purpose.'},
+    {q:'The unpaid seller\'s right of resale can be exercised:', options:['After giving notice, in specified circumstances such as perishable goods or after a reasonable time','Immediately and always without notice','Only with the buyer\'s written consent','Never'], answer:0, difficulty:'hard', explanation:'Resale rights are conditional, generally requiring notice except for perishables.'},
+  ],
+  ch4: [
+    {q:'Partnership under Sec 4 requires:', options:['Agreement, profit sharing, and mutual agency','Just profit sharing','Only a written deed','Government approval'], answer:0, difficulty:'easy', explanation:'These are the three essentials of a partnership.'},
+    {q:'Is registration of a partnership firm compulsory?', options:['No, but unregistered firms face disabilities','Yes, always mandatory','Only for firms with 2 partners','Only for foreign partners'], answer:0, difficulty:'easy', explanation:'Registration is optional but recommended, since an unregistered firm has real disabilities.'},
+    {q:'A partnership deed must be:', options:['Written, but is not strictly compulsory (oral agreements are valid too)','Always registered with a court','Signed by a government officer','Notarised internationally'], answer:0, difficulty:'easy', explanation:'An oral agreement can validly create a partnership.'},
+    {q:'Mutual agency in a partnership means:', options:['Each partner can act as agent for the firm and other partners','Only the senior partner can act for the firm','Partners cannot represent the firm at all','Only outsiders can represent the firm'], answer:0, difficulty:'easy', explanation:'This is one of the three essentials of partnership.'},
+    {q:'Sharing of profits alone is:', options:['Evidence of partnership but not conclusive proof','Absolute proof of partnership','Irrelevant to partnership status','Proof of employment only'], answer:0, difficulty:'medium', explanation:'Profit sharing is evidence, but courts look at the whole relationship.'},
+    {q:'An unregistered firm\'s main disability is:', options:['It cannot sue third parties to enforce a contractual right','It cannot pay its employees','It cannot open a bank account ever','It is automatically dissolved'], answer:0, difficulty:'medium', explanation:'This is the key practical disability under the Act.'},
+    {q:'A manager paid a share of profits as remuneration is:', options:['Not automatically a partner','Automatically a partner','A silent partner by default','The senior-most partner'], answer:0, difficulty:'medium', explanation:'Profit-linked pay alone doesn\'t create a partnership relationship.'},
+    {q:'A "particular partnership" refers to:', options:['A partnership formed for a single venture or undertaking','A partnership that lasts forever','A partnership with only family members','A partnership that must be registered'], answer:0, difficulty:'medium', explanation:'It is limited to one specific adventure or undertaking.'},
+    {q:'On dissolution of a firm, its property is applied:', options:['First to settle debts, then distributed among partners per their rights','Only to the senior partner','To a random partner chosen by lot','Immediately auctioned to the public'], answer:0, difficulty:'hard', explanation:'Debts are settled first; the balance is distributed as per partners\' rights.'},
+    {q:'Which best distinguishes a partner from a mere employee sharing profits?', options:['A partner has mutual agency and a share in management/control','Both are legally identical','An employee always earns more','A partner never gets a salary'], answer:0, difficulty:'hard', explanation:'Mutual agency and control distinguish a true partner from a profit-linked employee.'},
+    {q:'Under the Act, can a minor be admitted to the benefits of a partnership?', options:['Yes, but only to the benefits, not full liability','No, never in any capacity','Yes, with full unlimited liability','Only if they are 16 or older'], answer:0, difficulty:'hard', explanation:'A minor can be admitted to the benefits of partnership, without full liability.'},
+    {q:'Which best supports why an oral partnership agreement is legally valid?', options:['The Act does not require a written instrument for a partnership to exist','Oral contracts are never valid in Indian law','Only written contracts create legal relations','Partnership requires a notarised deed by law'], answer:0, difficulty:'hard', explanation:'No writing requirement exists under the Partnership Act for formation.'},
+  ],
+  ch5: [
+    {q:'LLP stands for:', options:['Limited Liability Partnership','Legal Liability Partnership','Limited Liability Proprietorship','Licensed Liability Partnership'], answer:0, difficulty:'easy', explanation:'LLP = Limited Liability Partnership.'},
+    {q:'Minimum number of partners needed to form an LLP:', options:['2','1','5','7'], answer:0, difficulty:'easy', explanation:'At least two partners are required.'},
+    {q:'Is there a maximum limit on LLP partners?', options:['No maximum limit','Maximum 20','Maximum 50','Maximum 2'], answer:0, difficulty:'easy', explanation:'Unlike a traditional partnership, LLPs have no cap on the number of partners.'},
+    {q:'An LLP is best described as:', options:['A separate legal entity distinct from its partners','Identical to a traditional partnership','A type of sole proprietorship','Not recognised under Indian law'], answer:0, difficulty:'easy', explanation:'The LLP Act, 2008 gives LLPs a distinct body-corporate status.'},
+    {q:'The liability of an LLP partner is generally:', options:['Limited to their agreed contribution','Unlimited, personal, and joint','Zero under all circumstances','Equal to the firm\'s total debts always'], answer:0, difficulty:'medium', explanation:'Liability is capped at the agreed contribution, subject to exceptions like fraud.'},
+    {q:'An LLP partner can be personally liable when:', options:['They commit their own wrongful act or fraud','They simply attend a meeting','The LLP earns a profit','Another partner makes an unrelated mistake with no connection to them'], answer:0, difficulty:'medium', explanation:'Personal liability attaches to one\'s own wrongful acts, not routine involvement.'},
+    {q:'What document governs the mutual rights and duties of LLP partners?', options:['The LLP Agreement','The Memorandum of Association','The Articles of Association','A partnership deed under the 1932 Act'], answer:0, difficulty:'medium', explanation:'The LLP Agreement is the governing internal document, distinct from a company\'s MoA/AoA.'},
+    {q:'LLP vs private company - a key similarity is:', options:['Both are separate legal entities from their members/partners','Both must have at least 7 members','Both cannot own property','Neither can be sued'], answer:0, difficulty:'medium', explanation:'Both structures give their owners a distinct legal personality.'},
+    {q:'Can an LLP be held liable in its own name for fraud committed in its business?', options:['Yes, an LLP can face unlimited liability in cases of fraud','No, only individual partners can ever be liable','LLPs are immune from all liability','Only the designated partner is ever liable'], answer:0, difficulty:'hard', explanation:'Fraud is a recognised exception that can expose the LLP itself to unlimited liability.'},
+    {q:'Which feature makes an LLP attractive to small professional firms compared to a private company?', options:['Lower compliance burden with the flexibility of a partnership plus limited liability','Higher compliance burden than a company','No liability protection at all','Mandatory public listing'], answer:0, difficulty:'hard', explanation:'LLPs combine partnership-style flexibility with limited liability and lighter compliance.'},
+    {q:'Perpetual succession for an LLP means:', options:['Its existence is unaffected by changes in its partners','It must renew registration every year','It automatically dissolves when one partner leaves','It only exists for a fixed 5-year term'], answer:0, difficulty:'hard', explanation:'Like a company, an LLP continues regardless of changes in its partners.'},
+    {q:'A traditional partnership differs from an LLP mainly in that:', options:['A traditional partnership has no separate legal personality from its partners','A traditional partnership always has limited liability','LLPs cannot sue or be sued','Traditional partnerships must have a minimum of 7 partners'], answer:0, difficulty:'hard', explanation:'This lack of separate personality is the fundamental distinction.'},
+  ],
+  ch6: [
+    {q:'A company is described as:', options:['An artificial person created by law','A natural person','A type of partnership only','A government department'], answer:0, difficulty:'easy', explanation:'This is the core definition under company law.'},
+    {q:'Which is a feature of a company?', options:['Separate legal entity','No legal identity of its own','Automatic dissolution on a member\'s death','Unlimited personal liability for all shareholders always'], answer:0, difficulty:'easy', explanation:'A company\'s defining feature is its separate legal personality.'},
+    {q:'Between MoA and AoA, which is the company\'s charter document defining its objects?', options:['Memorandum of Association','Articles of Association','Both equally','Neither'], answer:0, difficulty:'easy', explanation:'The MoA is the charter document; AoA governs internal management.'},
+    {q:'"Perpetual succession" of a company means:', options:['Its existence continues despite changes in membership','It must be renewed every year','It ends when the founder dies','It is a temporary legal status'], answer:0, difficulty:'easy', explanation:'Membership changes don\'t affect the company\'s continued existence.'},
+    {q:'"Lifting the corporate veil" refers to:', options:['Courts disregarding a company\'s separate identity in cases like fraud','Removing a company\'s registration permanently','A company issuing new shares','Renaming a company'], answer:0, difficulty:'medium', explanation:'Courts pierce the veil in select situations such as fraud.'},
+    {q:'Articles of Association:', options:['Must not conflict with the Memorandum, which is supreme','Always override the Memorandum','Have no legal effect','Are optional for every company'], answer:0, difficulty:'medium', explanation:'AoA is subordinate to the MoA.'},
+    {q:'A private company, compared to a public company, typically:', options:['Restricts transfer of shares and invitation to the public','Must list on a stock exchange','Cannot have any shareholders','Must have at least 200 members'], answer:0, difficulty:'medium', explanation:'These restrictions define a private company under the Act.'},
+    {q:'Limited liability for a shareholder means their loss is capped at:', options:['The unpaid amount on their shares','Their entire personal wealth','Double the value of their shares','Nothing — shareholders bear no risk at all'], answer:0, difficulty:'medium', explanation:'Liability is limited to the unpaid share value, not personal assets.'},
+    {q:'A One-Person Company (OPC) under the Companies Act 2013 can be formed by:', options:['A single individual','A minimum of 7 people','A minimum of 2 people','Only a foreign national'], answer:0, difficulty:'hard', explanation:'The 2013 Act introduced the OPC structure for solo founders.'},
+    {q:'Courts pierce the corporate veil most commonly in situations involving:', options:['Fraud or improper conduct hiding behind the company\'s separate personality','Routine annual general meetings','Normal dividend payments','Regular share transfers'], answer:0, difficulty:'hard', explanation:'Veil-piercing is reserved for misuse of the corporate form.'},
+    {q:'Which best explains why "separate legal entity" matters practically?', options:['The company can own property, sue, and be sued in its own name, distinct from its members','It means shareholders personally own company assets','It means the company has no rights at all','It means directors are always personally liable for company debts'], answer:0, difficulty:'hard', explanation:'Separate personality lets the company act as its own legal person.'},
+    {q:'A common seal, where adopted, historically served to:', options:['Authenticate documents executed on behalf of the company','Serve as the company\'s bank account number','Replace the need for a Memorandum','Act as a criminal record for directors'], answer:0, difficulty:'hard', explanation:'The seal authenticated formal company documents.'},
+  ],
+  ch7: [
+    {q:'Which of these is a negotiable instrument under the Act?', options:['Cheque','Ration card','Voter ID','Passport'], answer:0, difficulty:'easy', explanation:'A cheque is one of the three negotiable instruments under the Act.'},
+    {q:'A promissory note involves how many parties?', options:['2','3','4','1'], answer:0, difficulty:'easy', explanation:'Maker and payee — two parties.'},
+    {q:'A bill of exchange involves how many parties?', options:['3','2','1','5'], answer:0, difficulty:'easy', explanation:'Drawer, drawee, and payee — three parties.'},
+    {q:'A cheque is payable:', options:['On demand','Only after 90 days','Only in cash at a shop','Never to the bearer'], answer:0, difficulty:'easy', explanation:'A cheque is always payable on demand.'},
+    {q:'A cheque is best described as:', options:['A bill of exchange drawn on a specified banker, payable on demand','A promissory note between two friends','A type of insurance policy','A government bond'], answer:0, difficulty:'medium', explanation:'This is the precise legal definition of a cheque.'},
+    {q:'A "holder in due course" is someone who takes an instrument:', options:['For consideration, in good faith, before it\'s overdue, without notice of any defect','For free, as a gift, from a stranger','After it\'s overdue, knowing it\'s defective','Only from a bank employee'], answer:0, difficulty:'medium', explanation:'All these conditions must be met together.'},
+    {q:'Every holder in due course is:', options:['A holder, but not every holder is a holder in due course','Never a holder at all','The same as a drawer always','Automatically the maker of the instrument'], answer:0, difficulty:'medium', explanation:'Holder in due course is a narrower, protected category of holder.'},
+    {q:'The special protection given to a holder in due course is:', options:['A good title even if a prior party\'s title was defective','Immunity from all future lawsuits','Automatic ownership of the drawer\'s other property','The right to alter the instrument freely'], answer:0, difficulty:'medium', explanation:'This protection promotes trust in negotiable instruments.'},
+    {q:'Dishonour of a cheque for insufficient funds can trigger liability under:', options:['Section 138 of the Negotiable Instruments Act','The Indian Penal Code exclusively','The Companies Act 2013','The Sale of Goods Act 1930'], answer:0, difficulty:'hard', explanation:'Section 138 specifically deals with cheque dishonour for insufficiency of funds.'},
+    {q:'Which best distinguishes a promissory note from a bill of exchange?', options:['A promissory note is an unconditional promise to pay by the maker; a bill is an order by the drawer to the drawee to pay','They are legally identical instruments','A promissory note always needs a bank','A bill of exchange has only one party'], answer:0, difficulty:'hard', explanation:'A note is a promise; a bill is an order to a third party.'},
+    {q:'Why does the law protect a holder in due course more than an ordinary holder?', options:['To promote free negotiability and trust in commercial instruments','To punish the original drawer','To reduce the number of banks needed','To make instruments non-transferable'], answer:0, difficulty:'hard', explanation:'This protection underpins the commercial usefulness of negotiable instruments.'},
+    {q:'If A endorses a cheque to B, and B endorses it to C, who can typically sue on dishonour, assuming C meets holder in due course conditions?', options:['C, as the holder in due course, can generally sue prior parties','Only A can ever sue','No one can sue once endorsed twice','Only the bank can sue'], answer:0, difficulty:'hard', explanation:'A holder in due course can generally enforce the instrument against prior parties.'},
+  ],
+};
+
+const FAQ_BANK = [
+  {keywords:['condition','warranty','difference','stipulation'], answer:'A condition is a stipulation essential to the main purpose of the contract — breach lets the buyer repudiate the whole contract. A warranty is only a collateral stipulation — breach gives just a right to damages, not rejection. Ask: "if this term failed, would the deal itself have no point?" — if yes, it\'s a condition.', verify:'Sale of Goods Act, 1930 — Sections 11-12'},
+  {keywords:['indemnity','guarantee','difference','surety'], answer:'Indemnity is a two-party contract to compensate for a loss. Guarantee involves three parties — creditor, principal debtor, and surety — where the surety promises to perform or pay if the principal debtor defaults. The party-count is the quickest way to tell them apart.', verify:'Indian Contract Act, 1872 — Sections 124-126'},
+  {keywords:['bailment','pledge','difference'], answer:'Bailment is the delivery of goods by one person to another for a purpose, with the goods to be returned or disposed of as directed. A pledge is a special type of bailment where goods are delivered specifically as security for a debt. So every pledge is a bailment, but not every bailment is a pledge.', verify:'Indian Contract Act, 1872 — Sections 148 & 172'},
+  {keywords:['sale','agreement to sell','difference'], answer:'In a sale, property (ownership) in the goods passes to the buyer immediately. In an agreement to sell, the transfer of property happens later — once a condition is fulfilled or a future date arrives. Both are contracts of sale under Sec 4, differing only in timing of ownership transfer.', verify:'Sale of Goods Act, 1930 — Section 4'},
+  {keywords:['void','voidable','difference'], answer:'A void agreement was never enforceable in the eyes of law from the very start — e.g. an agreement with a minor. A voidable contract is enforceable, but at the option of the aggrieved party — e.g. one caused by coercion, fraud, misrepresentation, or undue influence.', verify:'Indian Contract Act, 1872 — Sections 2(g), 2(i), 19-19A'},
+  {keywords:['registration','partnership','firm','compulsory'], answer:'Registering a partnership firm is not compulsory under the Act. But an unregistered firm suffers real disabilities — most importantly, it cannot sue a third party, or even another partner, to enforce a right arising from a contract.', verify:'Indian Partnership Act, 1932 — Section 69'},
+  {keywords:['holder','holder in due course','difference'], answer:'A holder is simply someone entitled to possession of a negotiable instrument in their own name. A holder in due course is a stricter category — one who took it for consideration, in good faith, before it was overdue, and without notice of any defect. Every holder in due course is a holder, but not every holder qualifies as one in due course.', verify:'Negotiable Instruments Act, 1881 — Sections 8-9'},
+  {keywords:['llp','partnership','difference'], answer:'A traditional partnership has no legal existence separate from its partners, and liability is generally unlimited. An LLP is a separate body corporate with perpetual succession, and a partner\'s liability is limited to their agreed contribution (except for their own fraud or wrongful acts).', verify:'LLP Act, 2008 — Section 3'},
+  {keywords:['corporate veil','lifting','piercing'], answer:'"Lifting the corporate veil" means a court disregards a company\'s separate legal identity and looks directly at the individuals behind it — typically done in cases of fraud, improper conduct, or to determine the company\'s true character. It\'s an exception to the general rule of separate legal personality.', verify:'Companies Act, 2013 — general principle, applied via judicial precedent'},
+  {keywords:['moa','memorandum','aoa','articles','difference'], answer:'The Memorandum of Association (MoA) is the company\'s charter — it defines the company\'s objects and scope, and is the supreme document. The Articles of Association (AoA) contain the internal rules of management and day-to-day governance, and must not conflict with the MoA.', verify:'Companies Act, 2013 — Sections 4-5'},
+  {keywords:['caveat emptor','exception','buyer beware'], answer:'"Caveat emptor" (let the buyer beware) is the general rule under the Sale of Goods Act — but it has real exceptions: sale by description (goods must match the description), sale by sample (bulk must match sample), and fitness for a disclosed purpose where the buyer relies on the seller\'s skill or judgment.', verify:'Sale of Goods Act, 1930 — Sections 15-16'},
+  {keywords:['unpaid seller','rights','lien','stoppage','resale'], answer:'An unpaid seller has three main rights against the goods: (1) lien — retaining possession until payment; (2) stoppage in transit — regaining goods in transit if the buyer becomes insolvent; and (3) right of resale — reselling the goods in specified circumstances.', verify:'Sale of Goods Act, 1930 — Sections 47-54'},
+  {keywords:['promissory note','bill of exchange','difference'], answer:'A promissory note is an unconditional promise by the maker to pay a sum to the payee — it has 2 parties. A bill of exchange is an order by the drawer directing the drawee to pay the payee — it has 3 parties. A cheque is a special type of bill of exchange drawn on a bank, payable on demand.', verify:'Negotiable Instruments Act, 1881 — Sections 4-6'},
+  {keywords:['cheque','dishonour','bounce','138'], answer:'When a cheque is dishonoured for insufficiency of funds (or exceeding an arranged limit), the drawer can face criminal liability under Section 138 of the Negotiable Instruments Act, 1881, provided the statutory conditions (notice, time limits, etc.) are met.', verify:'Negotiable Instruments Act, 1881 — Section 138'},
+  {keywords:['particular partnership','single venture'], answer:'A "particular partnership" is one formed for a single, specific venture or undertaking — once that venture is completed, the partnership is presumed to dissolve, unless the partners agree otherwise.', verify:'Indian Partnership Act, 1932 — Section 8'},
+  {keywords:['perpetual succession'], answer:'Perpetual succession means an entity\'s existence continues unaffected by changes in its members or partners — deaths, resignations, or transfers don\'t end it. Both companies and LLPs enjoy perpetual succession; a traditional partnership generally does not.', verify:'Companies Act, 2013 / LLP Act, 2008 — general principle'},
+  {keywords:['one person company','opc'], answer:'A One Person Company (OPC) is a company that can be incorporated with just a single individual as its member, introduced by the Companies Act, 2013 to give solo entrepreneurs the benefit of a separate legal entity and limited liability.', verify:'Companies Act, 2013 — Section 2(62)'},
+  {keywords:['mutual agency'], answer:'Mutual agency means each partner in a firm is both an agent for the other partners and a principal in their own right — so any partner can bind the firm through their acts in the ordinary course of business, and is equally bound by acts of other partners.', verify:'Indian Partnership Act, 1932 — Section 18'},
+  {keywords:['minor','contract','agreement'], answer:'An agreement with a minor is void from the very start — a minor cannot be bound by contractual obligations. However, a minor can be admitted to the benefits of a partnership (not full liability), and can be a payee or endorsee of a negotiable instrument.', verify:'Indian Contract Act, 1872 — Section 11; Indian Partnership Act — Section 30'},
+  {keywords:['consideration','exception','love and affection'], answer:'The general rule is "no consideration, no contract" — but exceptions exist: a written and registered promise made out of natural love and affection between near relations, a written promise to pay a time-barred debt, and a completed gift, among others.', verify:'Indian Contract Act, 1872 — Section 25'},
+];
+
+/* ===================== STATE & STORAGE ===================== */
+
+let state = {
+  tab: 'dashboard',
+  chapterStatus: {},
+  quizHistory: [],
+  studyLog: [],
+  doubtHistory: [],
+  reminder: {enabled:false, timesPerDay:10, todayDate:'', todayCount:0, lastSlot:-1},
+  quizSession: null,
+};
+
+let memoryFallback = {}; // used only if localStorage is unavailable
+let storageWorks = true;
+
+function storageGet(key){
+  try{
+    const raw = localStorage.getItem('lawledger:'+key);
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){
+    storageWorks = false;
+    return memoryFallback[key] !== undefined ? memoryFallback[key] : null;
+  }
+}
+function storageSet(key, value){
+  try{
+    localStorage.setItem('lawledger:'+key, JSON.stringify(value));
+  }catch(e){
+    storageWorks = false;
+    memoryFallback[key] = value;
+  }
+}
+function loadAll(){
+  const keys = ['chapterStatus','quizHistory','studyLog','doubtHistory','reminder'];
+  keys.forEach(k=>{
+    const v = storageGet(k);
+    if(v !== null) state[k] = v;
+  });
+}
+function save(key){
+  storageSet(key, state[key]);
+}
+function getStatus(chId){
+  return state.chapterStatus[chId] || {status:'danger', quizAvg:null, lastStudied:null, hours:0, manual:false};
+}
+function setStatus(chId, patch){
+  state.chapterStatus[chId] = Object.assign(getStatus(chId), patch);
+  save('chapterStatus');
+}
+function computeStatusFromAvg(avg){
+  if(avg===null||avg===undefined) return 'danger';
+  if(avg>=75) return 'good';
+  if(avg>=40) return 'avg';
+  return 'danger';
+}
+function escapeHTML(s){ return String(s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function shuffle(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+/* ===================== RENDER SHELL ===================== */
+function renderRail(){
+  const rail = document.getElementById('rail');
+  rail.innerHTML = '';
+  TABS.forEach(t=>{
+    const b = document.createElement('button');
+    b.className = 'tab' + (state.tab===t.id?' active':'');
+    b.innerHTML = '<span class="num">'+t.num+'</span><span>'+t.label+'</span>';
+    b.onclick = ()=>{ state.tab=t.id; render(); };
+    rail.appendChild(b);
+  });
+}
+function render(){
+  renderRail();
+  const main = document.getElementById('main');
+  main.innerHTML = '';
+  if(!storageWorks){
+    const w = document.createElement('div');
+    w.className = 'banner';
+    w.innerHTML = 'Your browser is blocking local storage (private/incognito mode can do this), so progress won\'t be saved between visits — everything else still works.';
+    main.appendChild(w);
+  }
+  if(state.tab==='dashboard') renderDashboard(main);
+  else if(state.tab==='notes') renderNotes(main);
+  else if(state.tab==='flash') renderFlash(main);
+  else if(state.tab==='quiz') renderQuiz(main);
+  else if(state.tab==='doubt') renderDoubt(main);
+  else if(state.tab==='tracker') renderTracker(main);
+}
+
+/* ===================== DASHBOARD ===================== */
+function overallReadiness(){
+  let sum=0, n=0;
+  CHAPTERS.forEach(c=>{
+    const s = getStatus(c.id);
+    const v = s.status==='good'?100:s.status==='avg'?55:10;
+    sum+=v; n++;
+  });
+  return Math.round(sum/n);
+}
+function ringSVG(pct, size, color){
+  const r = (size/2)-8, c = 2*Math.PI*r;
+  const off = c - (pct/100)*c;
+  return '<svg width="'+size+'" height="'+size+'"><circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="#DCD2BA" stroke-width="8" fill="none"/>' +
+    '<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" stroke="'+color+'" stroke-width="8" fill="none" stroke-dasharray="'+c+'" stroke-dashoffset="'+off+'" stroke-linecap="round"/></svg>';
+}
+function ensureTodayReminder(){
+  if(state.reminder.todayDate !== todayKey()){
+    state.reminder.todayDate = todayKey();
+    state.reminder.todayCount = 0;
+    state.reminder.lastSlot = -1;
+    save('reminder');
+  }
+}
+function renderDashboard(main){
+  ensureTodayReminder();
+  const readiness = overallReadiness();
+  const goodCt = CHAPTERS.filter(c=>getStatus(c.id).status==='good').length;
+  const avgCt = CHAPTERS.filter(c=>getStatus(c.id).status==='avg').length;
+  const dangerCt = CHAPTERS.filter(c=>getStatus(c.id).status==='danger').length;
+
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 00</span><h2>The Case File — Overview</h2></div>
+    <p class="subhead">Your standing on all seven chapters of Business Laws, at a glance. Green means you're ready, amber means it needs another pass, black means it hasn't been opened yet — or is slipping.</p>
+    <div class="grid cols-2">
+      <div class="card">
+        <h3>Overall readiness</h3>
+        <div class="ring-wrap" style="margin-top:10px;">
+          ${ringSVG(readiness,110,readiness>=75?'#2F5D42':readiness>=45?'#8A3B2E':'#1C1A18')}
+          <div>
+            <div style="font-family:'Fraunces',serif;font-size:30px;line-height:1;margin-bottom:6px;">${readiness}%</div>
+            <div style="font-size:12.5px;color:#6b6250;">${goodCt} ready · ${avgCt} needs work · ${dangerCt} untouched</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="rollcall-card"></div>
+    </div>
+    <h3 style="margin-top:26px;">Chapter stamps</h3>
+    <div class="grid cols-2" id="chapter-stamps"></div>
+  `;
+  main.appendChild(wrap);
+  renderRollcall(document.getElementById('rollcall-card'));
+  const grid = document.getElementById('chapter-stamps');
+  CHAPTERS.forEach(c=>{
+    const s = getStatus(c.id);
+    const label = s.status==='good'?'GOOD':s.status==='avg'?'AVG':'DANGER';
+    const cls = s.status==='good'?'good':s.status==='avg'?'avg':'danger';
+    const div = document.createElement('div');
+    div.className='card chapter-row';
+    div.innerHTML = `
+      <div class="stamp ${cls}"><span>${label}</span><b>${c.num}</b></div>
+      <div class="meta">
+        <h3>${c.title}</h3>
+        <div class="act">${c.act}</div>
+        <div style="font-size:12px;color:#6b6250;margin-top:4px;">Last studied: ${s.lastStudied||'never'} · Quiz avg: ${s.quizAvg!==null&&s.quizAvg!==undefined?s.quizAvg+'%':'—'}</div>
+      </div>
+    `;
+    grid.appendChild(div);
+  });
+}
+
+function renderRollcall(card){
+  const r = state.reminder;
+  card.innerHTML = `
+    <h3>Daily roll-call</h3>
+    <p class="subhead" style="margin-bottom:14px;">Ask to be nudged to study ${r.timesPerDay} times a day while this tab is open. Each nudge logs what you studied — or why you didn't.</p>
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+      ${ringSVG(Math.min(100,(r.todayCount/r.timesPerDay)*100),88,'#A9793B')}
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:22px;">${r.todayCount} / ${r.timesPerDay}</div>
+        <div style="font-size:12px;color:#6b6250;">sittings logged today</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn ${r.enabled?'secondary':'brass'} small" id="toggle-reminder">${r.enabled?'Reminders on — turn off':'Turn on reminders'}</button>
+      <button class="btn secondary small" id="log-now">Log a sitting now</button>
+    </div>
+    <p style="font-size:11.5px;color:#6b6250;margin-top:12px;">Note: nudges only fire while this browser tab is open — there's no background push here. Keep the tab around during study hours (8am–10pm) for the full effect.</p>
+  `;
+  card.querySelector('#toggle-reminder').onclick = async ()=>{
+    if(!r.enabled){
+      if('Notification' in window){ try{ await Notification.requestPermission(); }catch(e){} }
+      r.enabled = true;
+    } else { r.enabled = false; }
+    save('reminder');
+    render();
+  };
+  card.querySelector('#log-now').onclick = ()=> openStudyLogModal();
+}
+
+function openStudyLogModal(prefillPrompt){
+  const root = document.getElementById('modal-root');
+  root.innerHTML = `
+    <div class="modal-back">
+      <div class="modal" style="position:relative;">
+        <button class="close-x" id="mclose">✕</button>
+        <h3>Log this sitting</h3>
+        <p class="subhead">${prefillPrompt||'Did you study Business Laws just now?'}</p>
+        <div class="field">
+          <label>Did you study?</label>
+          <div style="display:flex;gap:10px;">
+            <button class="btn small brass" id="yes-btn">Yes</button>
+            <button class="btn small secondary" id="no-btn">No</button>
+          </div>
+        </div>
+        <div id="log-detail"></div>
+      </div>
+    </div>
+  `;
+  document.getElementById('mclose').onclick = ()=> root.innerHTML='';
+  document.getElementById('yes-btn').onclick = ()=>{
+    document.getElementById('log-detail').innerHTML = `
+      <div class="field"><label>Which chapter?</label>
+        <select id="log-ch">${CHAPTERS.map(c=>'<option value="'+c.id+'">'+c.num+' — '+c.title+'</option>').join('')}</select>
+      </div>
+      <div class="field"><label>Minutes studied</label><input type="number" id="log-min" value="30" min="5"></div>
+      <button class="btn brass small" id="save-log">Save</button>
+    `;
+    document.getElementById('save-log').onclick = ()=>{
+      const chId = document.getElementById('log-ch').value;
+      const mins = parseInt(document.getElementById('log-min').value)||0;
+      state.studyLog.push({date:todayKey(), chapter:chId, studied:true, minutes:mins, ts:Date.now()});
+      save('studyLog');
+      const s = getStatus(chId);
+      setStatus(chId, {lastStudied:todayKey(), hours: Math.round(((s.hours||0)+mins/60)*10)/10});
+      state.reminder.todayCount++;
+      save('reminder');
+      root.innerHTML='';
+      render();
+    };
+  };
+  document.getElementById('no-btn').onclick = ()=>{
+    document.getElementById('log-detail').innerHTML = `
+      <div class="field"><label>Why not?</label><textarea id="log-reason" rows="3" placeholder="e.g. college assignment, felt unwell, ran out of time..."></textarea></div>
+      <button class="btn brass small" id="save-reason">Save</button>
+    `;
+    document.getElementById('save-reason').onclick = ()=>{
+      const reason = document.getElementById('log-reason').value;
+      state.studyLog.push({date:todayKey(), studied:false, reason:reason, ts:Date.now()});
+      save('studyLog');
+      state.reminder.todayCount++;
+      save('reminder');
+      root.innerHTML='';
+      render();
+    };
+  };
+}
+
+setInterval(()=>{
+  ensureTodayReminder();
+  const r = state.reminder;
+  if(!r.enabled) return;
+  const now = new Date();
+  const startH=8, endH=22;
+  const hour = now.getHours() + now.getMinutes()/60;
+  if(hour<startH || hour>endH) return;
+  const slotWidth = (endH-startH)/r.timesPerDay;
+  const slot = Math.floor((hour-startH)/slotWidth);
+  if(slot>r.lastSlot && r.todayCount<r.timesPerDay){
+    r.lastSlot = slot;
+    save('reminder');
+    if('Notification' in window && Notification.permission==='granted'){
+      try{ new Notification('Time to study Business Laws', {body:'Log what you studied — or why not.'}); }catch(e){}
+    }
+    openStudyLogModal('Nudge '+(slot+1)+' of '+r.timesPerDay+' — did you study Business Laws just now?');
+  }
+}, 30000);
+
+/* ===================== NOTES ===================== */
+function renderNotes(main){
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 01</span><h2>Topper Notes</h2></div>
+    <p class="subhead">Colour-coded like a rank-holder's own notebook — blue for definitions, green for must-know points, brass for exceptions, and red for landmark cases or common mistakes.</p>
+    <div class="banner">These notes are written fresh, in plain language — not copied from any ICAI publication — and work fully offline. Always cross-check chapter names and any recent amendments against your current ICAI Study Material before your attempt.</div>
+    <div class="selector-bar"><label>Chapter</label><select id="notes-ch">${CHAPTERS.map(c=>'<option value="'+c.id+'">'+c.num+' — '+c.title+'</option>').join('')}</select></div>
+    <div id="notes-output"></div>
+  `;
+  main.appendChild(wrap);
+  document.getElementById('notes-ch').onchange = renderCachedNotes;
+  renderCachedNotes();
+}
+function renderCachedNotes(){
+  const chId = document.getElementById('notes-ch').value;
+  const out = document.getElementById('notes-output');
+  const blocks = NOTES_BANK[chId] || [];
+  paintNotes(out, blocks);
+}
+function paintNotes(out, blocks){
+  out.innerHTML = '<div class="card">' + blocks.map(b=>{
+    const cls = ['definition','keypoint','exception','case','mnemonic'].includes(b.type)?b.type:'keypoint';
+    const label = {definition:'Definition',keypoint:'Key point',exception:'Exception',case:'Case / mistake',mnemonic:'Mnemonic'}[cls];
+    return '<div class="note-block"><span class="tag '+cls+'">'+label+'</span><h4>'+escapeHTML(b.heading||'')+'</h4><p>'+escapeHTML(b.content||'')+'</p></div>';
+  }).join('') + '</div>';
+}
+
+/* ===================== FLASHCARDS ===================== */
+let flashIndex = 0, flashFlipped = false;
+function renderFlash(main){
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 02</span><h2>Flash Cards</h2></div>
+    <p class="subhead">Quick-fire recall. Front carries the question or term, back carries the answer.</p>
+    <div class="selector-bar"><label>Chapter</label><select id="flash-ch">${CHAPTERS.map(c=>'<option value="'+c.id+'">'+c.num+' — '+c.title+'</option>').join('')}</select></div>
+    <div id="flash-output"></div>
+  `;
+  main.appendChild(wrap);
+  document.getElementById('flash-ch').onchange = ()=>{ flashIndex=0; flashFlipped=false; renderCachedFlash(); };
+  renderCachedFlash();
+}
+function renderCachedFlash(){
+  const chId = document.getElementById('flash-ch').value;
+  const cards = FLASH_BANK[chId] || [];
+  const out = document.getElementById('flash-output');
+  paintFlash(out, cards);
+}
+function paintFlash(out, cards){
+  if(!cards.length){ out.innerHTML = '<p class="empty">No flash cards available for this chapter.</p>'; return; }
+  if(flashIndex>=cards.length) flashIndex=0;
+  const card = cards[flashIndex];
+  out.innerHTML = `
+    <div class="card">
+      <div class="flash-wrap"><div class="flash ${flashFlipped?'flipped':''}" id="flash-el">
+        <div class="face front">${escapeHTML(card.front)}</div>
+        <div class="face back">${escapeHTML(card.back)}</div>
+      </div></div>
+      <div class="flash-nav">
+        <button class="btn secondary small" id="fp">‹ Prev</button>
+        <span class="mono" style="font-size:12px;color:#6b6250;">${flashIndex+1} / ${cards.length} — tap card to flip</span>
+        <button class="btn secondary small" id="fn">Next ›</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('flash-el').onclick = ()=>{ flashFlipped=!flashFlipped; paintFlash(out,cards); };
+  document.getElementById('fp').onclick = ()=>{ flashIndex=(flashIndex-1+cards.length)%cards.length; flashFlipped=false; paintFlash(out,cards); };
+  document.getElementById('fn').onclick = ()=>{ flashIndex=(flashIndex+1)%cards.length; flashFlipped=false; paintFlash(out,cards); };
+}
+
+/* ===================== QUIZ MAKER ===================== */
+function renderQuiz(main){
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 03</span><h2>Quiz Maker</h2></div>
+    <p class="subhead">Set the scope, the difficulty, and the marks on the line — built from a bundled question bank, so it works offline (questions may repeat if you ask for more marks than the bank holds for a narrow selection).</p>
+    <div class="card" id="quiz-setup"></div>
+    <div id="quiz-area"></div>
+  `;
+  main.appendChild(wrap);
+  renderQuizSetup();
+}
+function renderQuizSetup(){
+  const box = document.getElementById('quiz-setup');
+  box.innerHTML = `
+    <div class="field">
+      <label>Chapters</label>
+      <select id="quiz-chapters" multiple size="4">
+        <option value="all" selected>All chapters</option>
+        ${CHAPTERS.map(c=>'<option value="'+c.id+'">'+c.num+' — '+c.title+'</option>').join('')}
+      </select>
+      <p style="font-size:11px;color:#6b6250;margin-top:4px;">Ctrl/Cmd-click to pick specific chapters, or leave "All chapters" selected.</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="field"><label>Difficulty</label>
+        <select id="quiz-diff">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+          <option value="mixed">Mixed (easy + medium + hard)</option>
+        </select>
+      </div>
+      <div class="field"><label>Total marks: <span id="marks-val">40</span></label>
+        <input type="range" id="quiz-marks" min="20" max="100" step="5" value="40">
+      </div>
+    </div>
+    <button class="btn brass" id="start-quiz">Generate quiz</button>
+  `;
+  document.getElementById('quiz-marks').oninput = (e)=>{ document.getElementById('marks-val').textContent = e.target.value; };
+  document.getElementById('start-quiz').onclick = startQuiz;
+}
+function startQuiz(){
+  const sel = [...document.getElementById('quiz-chapters').selectedOptions].map(o=>o.value);
+  const chapters = sel.includes('all') ? CHAPTERS : CHAPTERS.filter(c=>sel.includes(c.id));
+  const diff = document.getElementById('quiz-diff').value;
+  const marks = parseInt(document.getElementById('quiz-marks').value);
+  const area = document.getElementById('quiz-area');
+
+  let pool = [];
+  chapters.forEach(c=>{
+    const qs = QUIZ_BANK[c.id] || [];
+    qs.forEach(q=>{
+      if(diff==='mixed' || q.difficulty===diff) pool.push(q);
+    });
+  });
+  if(pool.length===0){
+    area.innerHTML = '<div class="card"><p class="empty">No questions available for that combination — try a different difficulty or add more chapters.</p></div>';
+    return;
+  }
+  pool = shuffle(pool);
+  let questions = [];
+  let repeated = false;
+  for(let i=0;i<marks;i++){
+    if(i<pool.length) questions.push(pool[i]);
+    else { questions.push(pool[i % pool.length]); repeated = true; }
+  }
+  state.quizSession = {
+    questions, repeated,
+    chapters: chapters.map(c=>c.id),
+    diff, marks: questions.length,
+    answers: new Array(questions.length).fill(null),
+    submitted: false,
+    idx: 0
+  };
+  paintQuiz(area);
+}
+function paintQuiz(area){
+  const s = state.quizSession;
+  if(!s){ area.innerHTML=''; return; }
+  if(!s.submitted){
+    const q = s.questions[s.idx];
+    area.innerHTML = `
+      ${s.repeated && s.idx===0 ? '<div class="banner">This selection didn\'t have enough unique questions for '+s.marks+' marks, so some repeat — pick more chapters or a wider difficulty for full variety.</div>' : ''}
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#6b6250;margin-bottom:10px;">
+          <span>Question ${s.idx+1} of ${s.questions.length}</span>
+          <span class="mono">${(q.difficulty||'').toUpperCase()} · 1 mark</span>
+        </div>
+        <h3 style="margin-bottom:14px;">${escapeHTML(q.q)}</h3>
+        <div id="opts">${q.options.map((o,i)=>'<button class="q-option'+(s.answers[s.idx]===i?' selected':'')+'" data-i="'+i+'">'+escapeHTML(o)+'</button>').join('')}</div>
+        <div style="display:flex;justify-content:space-between;margin-top:16px;">
+          <button class="btn secondary small" id="q-prev" ${s.idx===0?'disabled':''}>‹ Prev</button>
+          ${s.idx===s.questions.length-1 ? '<button class="btn brass small" id="q-submit">Submit quiz</button>' : '<button class="btn secondary small" id="q-next">Next ›</button>'}
+        </div>
+      </div>
+    `;
+    [...area.querySelectorAll('.q-option')].forEach(btn=>{
+      btn.onclick = ()=>{ s.answers[s.idx] = parseInt(btn.dataset.i); paintQuiz(area); };
+    });
+    const prevB = document.getElementById('q-prev'); if(prevB) prevB.onclick = ()=>{ s.idx--; paintQuiz(area); };
+    const nextB = document.getElementById('q-next'); if(nextB) nextB.onclick = ()=>{ s.idx++; paintQuiz(area); };
+    const subB = document.getElementById('q-submit'); if(subB) subB.onclick = ()=> submitQuiz(area);
+  } else {
+    const score = s.answers.filter((a,i)=>a===s.questions[i].answer).length;
+    const pct = Math.round((score/s.questions.length)*100);
+    area.innerHTML = `
+      <div class="card">
+        <h3>Result: ${score} / ${s.questions.length} (${pct}%)</h3>
+        <p class="subhead">Chapter status updates below have been recorded to your Prep Ledger.</p>
+      </div>
+      <div class="card" style="max-height:480px;overflow-y:auto;">
+        ${s.questions.map((q,i)=>{
+          const correct = s.answers[i]===q.answer;
+          return '<div class="note-block"><span class="tag '+(correct?'keypoint':'case')+'">'+(correct?'Correct':'Review')+'</span><h4>'+escapeHTML(q.q)+'</h4>' +
+            q.options.map((o,oi)=>{
+              let cls='q-option';
+              if(oi===q.answer) cls+=' correct';
+              else if(oi===s.answers[i]) cls+=' incorrect';
+              return '<div class="'+cls+'" style="pointer-events:none;">'+escapeHTML(o)+'</div>';
+            }).join('') +
+            '<p style="font-size:13px;color:#6b6250;margin-top:6px;">'+escapeHTML(q.explanation||'')+'</p></div>';
+        }).join('')}
+      </div>
+      <button class="btn secondary" id="new-quiz">Build another quiz</button>
+    `;
+    document.getElementById('new-quiz').onclick = ()=>{ state.quizSession=null; render(); };
+  }
+}
+function submitQuiz(area){
+  const s = state.quizSession;
+  s.submitted = true;
+  const score = s.answers.filter((a,i)=>a===s.questions[i].answer).length;
+  const pct = Math.round((score/s.questions.length)*100);
+  state.quizHistory.push({date:todayKey(), chapters:s.chapters, diff:s.diff, total:s.questions.length, score, pct});
+  save('quizHistory');
+  s.chapters.forEach(chId=>{
+    const cur = getStatus(chId);
+    const newAvg = cur.quizAvg===null||cur.quizAvg===undefined ? pct : Math.round((cur.quizAvg+pct)/2);
+    setStatus(chId, {quizAvg:newAvg, status: computeStatusFromAvg(newAvg)});
+  });
+  paintQuiz(area);
+}
+
+/* ===================== DOUBT DESK ===================== */
+function renderDoubt(main){
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 04</span><h2>Doubt Desk</h2></div>
+    <p class="subhead">Ask anything from the seven Business Laws chapters. Answers are matched against a bundled bank of verified explanations, so this works offline too.</p>
+    <div class="card">
+      <div class="chat-log" id="chat-log"></div>
+      <div style="display:flex;gap:8px;margin-top:14px;">
+        <input type="text" id="doubt-input" placeholder="e.g. What's the difference between condition and warranty?">
+        <button class="btn brass" id="doubt-send">Ask</button>
+      </div>
+    </div>
+  `;
+  main.appendChild(wrap);
+  paintChat();
+  document.getElementById('doubt-send').onclick = sendDoubt;
+  document.getElementById('doubt-input').addEventListener('keydown', e=>{ if(e.key==='Enter') sendDoubt(); });
+}
+function paintChat(){
+  const log = document.getElementById('chat-log');
+  if(!log) return;
+  if(state.doubtHistory.length===0){ log.innerHTML = '<p class="empty">No doubts asked yet — try one above.</p>'; return; }
+  log.innerHTML = state.doubtHistory.map(m=>
+    '<div class="msg user">'+escapeHTML(m.q)+'</div>' +
+    '<div class="msg ai">'+escapeHTML(m.a)+(m.verify?'<div class="verify">✓ '+escapeHTML(m.verify)+'</div>':'')+'</div>'
+  ).join('');
+  log.scrollTop = log.scrollHeight;
+}
+function searchFAQ(query){
+  const words = query.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w=>w.length>2);
+  let best = null, bestScore = 0;
+  FAQ_BANK.forEach(entry=>{
+    let score = 0;
+    entry.keywords.forEach(k=>{
+      if(words.some(w=>w.includes(k) || k.includes(w))) score++;
+    });
+    if(score>bestScore){ bestScore=score; best=entry; }
+  });
+  return bestScore>0 ? best : null;
+}
+function sendDoubt(){
+  const input = document.getElementById('doubt-input');
+  const q = input.value.trim();
+  if(!q) return;
+  input.value='';
+  const match = searchFAQ(q);
+  let answer, verify;
+  if(match){
+    answer = match.answer;
+    verify = match.verify;
+  } else {
+    const topics = FAQ_BANK.slice(0,4).map(f=>f.keywords[0]).join(', ');
+    answer = 'I don\'t have a ready answer bundled for that exact doubt yet. Try rephrasing with the key legal terms involved (e.g. "condition vs warranty", "indemnity vs guarantee"), or check the Topper Notes for the relevant chapter. Common topics I can answer well: '+topics+', and more.';
+    verify = '';
+  }
+  state.doubtHistory.push({q, a:answer, verify, ts:Date.now()});
+  save('doubtHistory');
+  paintChat();
+}
+
+/* ===================== PREP TRACKER ===================== */
+function renderTracker(main){
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="section-head"><span class="idx mono">Sec. 05</span><h2>Prep Ledger</h2></div>
+    <p class="subhead">Every chapter's standing — auto-scored from your quiz history, or set it yourself.</p>
+    <div class="card">
+      <table>
+        <thead><tr><th>Ch.</th><th>Chapter</th><th>Status</th><th>Quiz avg</th><th>Last studied</th><th>Hours logged</th><th>Override</th></tr></thead>
+        <tbody id="tracker-body"></tbody>
+      </table>
+    </div>
+    <h3>Study log</h3>
+    <div class="card" id="study-log-card"></div>
+  `;
+  main.appendChild(wrap);
+  const body = document.getElementById('tracker-body');
+  CHAPTERS.forEach(c=>{
+    const s = getStatus(c.id);
+    const tr = document.createElement('tr');
+    const cls = s.status==='good'?'good':s.status==='avg'?'avg':'danger';
+    const label = s.status==='good'?'Good':s.status==='avg'?'Average':'Danger';
+    tr.innerHTML = `
+      <td class="mono">${c.num}</td>
+      <td>${c.title}</td>
+      <td><span class="stamp ${cls}" style="width:38px;height:38px;font-size:8px;"><b style="font-size:10px;">${label}</b></span></td>
+      <td>${s.quizAvg!==null&&s.quizAvg!==undefined?s.quizAvg+'%':'—'}</td>
+      <td>${s.lastStudied||'never'}</td>
+      <td>${s.hours||0}</td>
+      <td><select data-ch="${c.id}" class="override-sel">
+          <option value="">auto</option>
+          <option value="good" ${s.manual&&s.status==='good'?'selected':''}>Good</option>
+          <option value="avg" ${s.manual&&s.status==='avg'?'selected':''}>Average</option>
+          <option value="danger" ${s.manual&&s.status==='danger'?'selected':''}>Danger</option>
+        </select></td>
+    `;
+    body.appendChild(tr);
+  });
+  [...body.querySelectorAll('.override-sel')].forEach(sel=>{
+    sel.onchange = ()=>{
+      const chId = sel.dataset.ch;
+      if(sel.value===''){ setStatus(chId, {manual:false, status: computeStatusFromAvg(getStatus(chId).quizAvg)}); }
+      else { setStatus(chId, {manual:true, status: sel.value}); }
+      render();
+    };
+  });
+  const logCard = document.getElementById('study-log-card');
+  const recent = state.studyLog.slice(-15).reverse();
+  if(recent.length===0){ logCard.innerHTML = '<p class="empty">No sittings logged yet.</p>'; }
+  else {
+    logCard.innerHTML = recent.map(l=>{
+      if(l.studied){
+        const ch = CHAPTERS.find(c=>c.id===l.chapter);
+        return '<div class="note-block"><span class="tag keypoint">Studied</span><p>'+l.date+' — '+(ch?ch.title:'')+' · '+l.minutes+' min</p></div>';
+      } else {
+        return '<div class="note-block"><span class="tag case">Skipped</span><p>'+l.date+' — '+escapeHTML(l.reason||'no reason given')+'</p></div>';
+      }
+    }).join('');
+  }
+}
+
+/* ===================== BOOT ===================== */
+loadAll();
+render();
+</script>
+</body>
+</html>
